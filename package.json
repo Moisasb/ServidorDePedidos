@@ -1,13 +1,22 @@
 {
-  "name": "servidor-de-pedidos",
+  "name": "servidordepedidos",
   "version": "1.0.0",
-  "type": "module",
-  "description": "API de pedidos com métodos GET, POST, PUT e DELETE",
-  "main": "index.js",
+  "description": "A Node.js server for managing orders (Servidor de Pedidos).",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moisasb/ServidorDePedidos.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Your Name",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Moisasb/ServidorDePedidos/issues"
+  },
+  "homepage": "https://github.com/Moisasb/ServidorDePedidos#readme"
 }

@@ -1,4 +1,4 @@
-import { createServer } from 'http';
+const { createServer } = require('http');
 
 let pedidos = [
     {
@@ -16,7 +16,6 @@ const server = createServer((req, res) => {
     if (url === '/pedidos' && method === 'GET') {
         res.statusCode = 200;
         res.end(JSON.stringify(pedidos));
-        return;
     }
 
     if (url === '/pedidos' && method === 'POST') {
@@ -24,24 +23,21 @@ const server = createServer((req, res) => {
         req.on('data', chunk => body += chunk);
         req.on('end', () => {
             const novo = JSON.parse(body);
-            novo.id = pedidos.length > 0 ? pedidos[pedidos.length - 1].id + 1 : 1;
             pedidos.push(novo);
             res.statusCode = 201;
             res.end(JSON.stringify(novo));
         });
-        return;
     }
 
     if (url === '/pedidos' && method === 'PUT') {
         let body = '';
         req.on('data', chunk => body += chunk);
         req.on('end', () => {
-            const atualizado = JSON.parse(body);
-            pedidos = pedidos.map(p => p.id === atualizado.id ? atualizado : p);
+            const alterado = JSON.parse(body);
+            pedidos = pedidos.map(p => p.id === alterado.id ? alterado : p);
             res.statusCode = 200;
-            res.end(JSON.stringify(atualizado));
+            res.end(JSON.stringify(alterado));
         });
-        return;
     }
 
     if (url === '/pedidos' && method === 'DELETE') {
@@ -53,13 +49,9 @@ const server = createServer((req, res) => {
             res.statusCode = 200;
             res.end(JSON.stringify({ removido: id }));
         });
-        return;
     }
-
-    res.statusCode = 404;
-    res.end(JSON.stringify({ erro: "Not Found" }));
 });
 
 server.listen(3000, () => {
-    console.log("http://localhost:3000/pedidos");
+    console.log("O servidor de Pedidos está rodando em http://localhost:3000/pedidos");
 });
